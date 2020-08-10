@@ -6,9 +6,10 @@ const ContactForm = (props) => {
     dateAndTime: "",
     serialNumber: 0,
     ideaName: "",
-    mobile: "",
-    email: "",
-    address: "",
+    description: "",
+    expectations: "",
+    category: "",
+    rate: "",
   };
   var [values, setValues] = useState(initialFieldValues);
 
@@ -30,22 +31,19 @@ const ContactForm = (props) => {
       [name]: value,
     });
   };
-  const currentDate = () => {
+
+  const currentDateAndSerialNumber = () => {
     let dateTime = moment().format("DD MMMM YYYY, h:mm:ss a");
+    console.log(dateTime);
 
     setValues({
       ...values,
       dateAndTime: dateTime,
-    });
-  };
-  const serialNumber = () => {
-    setValues({
-      ...values,
       serialNumber: number,
     });
-    setNumber(aaa(number));
+    setNumber(getNumber(number));
   };
-  const aaa = (number) => {
+  const getNumber = (number) => {
     return (number = number + 1);
   };
 
@@ -74,49 +72,68 @@ const ContactForm = (props) => {
       </div>
       {/* form-row just for another row */}
       <div className="form-row">
-        <div className="form-group input-group col-md-6">
-          <div className="input-group-prepend">
-            <div className="input-group-text">
-              <i className="fas fa-mobile-alt"></i>
-            </div>
-          </div>
-          <input
-            className="form-control"
-            placeholder="Mobile"
-            name="mobile"
-            value={values.mobile}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group input-group col-md-6">
-          <div className="input-group-prepend">
-            <div className="input-group-text">
-              <i className="fas fa-envelope "></i>
-            </div>
-          </div>
-          <input
-            className="form-control"
-            placeholder="email"
-            name="email"
-            value={values.email}
-            onChange={handleInputChange}
-          />
-        </div>
-      </div>
-      <div className="form-group">
         <textarea
           className="form-control"
-          placeholder="Address"
-          name="address"
-          value={values.address}
+          placeholder="expectations of idea"
+          name="expectations"
+          value={values.expectations}
           onChange={handleInputChange}
         ></textarea>
       </div>
+      <div className="form-row" style={{ marginBottom: 5, marginTop: 5 }}>
+        <textarea
+          className="form-control"
+          placeholder="Description of idea"
+          name="description"
+          value={values.description}
+          onChange={handleInputChange}
+        ></textarea>
+      </div>
+      <div className="form-row">
+        <label>
+          Chose the category:
+          <select
+            className="btn btn-primary dropdown-toggle"
+            value={values.category}
+            onChange={handleInputChange}
+            name="category"
+          >
+            <option value="personalLife">Personal Life</option>
+            <option value="job">Job</option>
+            <option value="education">Education</option>
+            <option value="travel">travel</option>
+            <option value="other">other</option>
+          </select>
+        </label>
+      </div>
+      <div className="form-row">
+        <label>
+          Rate the idea:
+          <select
+            className="btn btn-primary dropdown-toggle"
+            value={values.rate}
+            onChange={handleInputChange}
+            name="rate"
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </label>
+      </div>
+
       <div className="form-group">
         <input
           type="submit"
           value={props.currentId === "" ? "Save" : "Update"}
-          onClick={(currentDate, serialNumber)}
+          onClick={currentDateAndSerialNumber}
           className="btn btn-primary btn-block"
         />
       </div>

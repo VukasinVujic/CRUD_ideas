@@ -56,7 +56,6 @@ const Contacts = (params) => {
 
   const serialNumber = (id) => {
     let number = Object.keys(contactObjects).indexOf(id) + 1;
-    // console.log(number);
     return number;
   };
 
@@ -68,18 +67,20 @@ const Contacts = (params) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-md-5">
+        <div className="col-md-3">
           <ContactForm {...{ addOrEdit, currentId, contactObjects }} />
         </div>
-        <div className="col-md-7">
+        <div className="col-md-9">
           <table className="table table-borderless table-stripped">
             <thead className="thead-light">
               <tr>
                 <th>Nr.</th>
-                <th>Data and time of idea</th>
+                <th>Date & time</th>
                 <th>Idea name</th>
-                <th>Mobile</th>
-                <th>Email</th>
+                <th>expectations</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Rate</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -90,8 +91,11 @@ const Contacts = (params) => {
                     <td>{serialNumber(id)}</td>
                     <td>{contactObjects[id].dateAndTime}</td>
                     <td>{contactObjects[id].ideaName}</td>
-                    <td>{contactObjects[id].mobile}</td>
-                    <td>{contactObjects[id].email}</td>
+                    <td>{contactObjects[id].expectations}</td>
+                    <td>{contactObjects[id].description}</td>
+                    <td>{contactObjects[id].category}</td>
+                    <td>{contactObjects[id].rate}</td>
+
                     <td>
                       <a
                         className="btn text-primary"
